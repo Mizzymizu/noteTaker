@@ -9,11 +9,11 @@ notes.get('/', (req, res) => {
 
 // GET route to retrieve a specific note
 notes.get('/:note_id', (req, res) => {
-    const noteID = req.params.note_id;
+    const noteId = req.params.note_id;
     readFromFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
-            const result = json.filter((note) => note.id === noteId);
+            const result = json.filter((note) => note.note_id === noteId);
             return result.length > 0
                 ? res.json(result)
                 : res.json("No notes were found with that ID :(");
@@ -35,6 +35,18 @@ notes.post('/', (req, res) => {
     } else {
         res.error('LOL nope')
     }
+});
+
+// BONUS: Added DELETE Route
+notes.delete('/:note_id', (req, res) => {
+    const noteId = req.params.note_id;
+    readFromFile('./db/db.json')
+        .then((data) => JSON.parse(data))
+        .then((json) => {
+            const result = json.filter((note) => note.note_id !== noteId);
+            writeToFile('./db/db.json', result);
+            res.json(`Item ${noteId} has been dumped...like my heart...`)
+        });
 });
 
 module.exports = notes;
