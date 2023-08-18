@@ -23,12 +23,6 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// DELETE Route
-app.delete('/:id', (req, res) => 
-    res.json('DELETE Request called')
-);
-
-
 
 // PORT
 app.listen(PORT, () =>

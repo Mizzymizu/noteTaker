@@ -8,12 +8,12 @@ notes.get('/', (req, res) => {
 });
 
 // GET route to retrieve a specific note
-notes.get('/:note_id', (req, res) => {
-    const noteId = req.params.note_id;
+notes.get('/:id', (req, res) => {
+    const noteId = req.params.id;
     readFromFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
-            const result = json.filter((note) => note.note_id === noteId);
+            const result = json.filter((note) => note.id === noteId);
             return result.length > 0
                 ? res.json(result)
                 : res.json("No notes were found with that ID :(");
@@ -23,7 +23,7 @@ notes.get('/:note_id', (req, res) => {
 // POST route
 notes.post('/', (req, res) => {
     console.log(req.body);
-    const { title, text} = req.body;
+    const { title, text } = req.body;
     if (req.body) {
         const newNote = {
             title,
@@ -38,12 +38,12 @@ notes.post('/', (req, res) => {
 });
 
 // BONUS: Added DELETE Route
-notes.delete('/:note_id', (req, res) => {
-    const noteId = req.params.note_id;
+notes.delete('/:id', (req, res) => {
+    const noteId = req.params.id;
     readFromFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
-            const result = json.filter((note) => note.note_id !== noteId);
+            const result = json.filter((note) => note.id !== noteId);
             writeToFile('./db/db.json', result);
             res.json(`Item ${noteId} has been dumped...like my heart...`)
         });
