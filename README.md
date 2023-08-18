@@ -17,3 +17,10 @@ This is a simple application that allows you to jot down notes throughout the wh
 Here is the [GitHub Repository](https://github.com/Mizzymizu/noteTaker) for the code!
 
 Here is the deployed [Heroku Application](https://fathomless-sands-04961-0b52d1710617.herokuapp.com/)!
+
+## Deployment Samples
+![Landing Page](./deployment/landingPage.png)
+
+![Feature](./deployment/featureOne.png)
+
+![Feature Test](./deployment/featureTest.png)
