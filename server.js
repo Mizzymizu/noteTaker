@@ -23,6 +23,11 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
+// WILDCARD Route for redirecting
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+);
+
 
 // PORT
 app.listen(PORT, () =>
